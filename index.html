@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- fontawesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"
+        integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w=="
+        crossorigin="anonymous" />
+    <!-- main css -->
+    <link rel="stylesheet" href="/css/main.css">
+    <script defer src="js/app.js"></script>
+    <title>DOG OR CAT</title>
+</head>
+<body>
+    <header>
+        <ul class="header-set">
+            <button id="chooseCat"><i class="fas fa-cat cat"></i></button>
+            <span>or</span>
+            <button id="chooseDog"><i class="fas fa-dog dog"></i></button>
+        </ul>
+
+    </header>
+    <main>
+
+        <section class="container displayNone" id="catContainer">
+
+            <div class="container-wall"></div>
+            <div class="container-img-box" id="catImgBox" >
+                <button class="container-img-lock">
+                    <i class="fas fa-lock"></i>
+                </button>
+                <div class="container-img-gate" onclick="alert('触っちゃダメ!!ロックをクリックして');">
+                    <div class="gate gate-vertical"></div>
+                    <div class="gate gate-vertical"></div>
+                    <div class="gate gate-vertical"></div>
+                    <div class="gate gate-vertical"></div>
+                    <div class="gate gate-horizontal"></div>
+                    <div class="gate gate-horizontal"></div>
+                    <div class="gate gate-horizontal"></div>
+                    <div class="gate gate-horizontal"></div>
+                </div>
+                <div class="container-img" id="containerImgCat">
+                </div>
+            </div>
+            <button class="container-button" id="catBtn"
+                ><i class="fas fa-paw"></i>
+            </button>
+        </section>
+        <section class="container displayNone" id="dogContainer">
+            <div class="container-wall"></div>
+
+            <div class="container-img-box" id="dogImgBox">
+                <button class="container-img-lock">
+                    <i class="fas fa-lock"></i>
+                </button>
+                <div class="container-img-gate" onclick="alert('触っちゃダメ!!ロックをクリックして');">
+                    <div class="gate gate-vertical"></div>
+                    <div class="gate gate-vertical"></div>
+                    <div class="gate gate-vertical"></div>
+                    <div class="gate gate-vertical"></div>
+                    <div class="gate gate-horizontal"></div>
+                    <div class="gate gate-horizontal"></div>
+                    <div class="gate gate-horizontal"></div>
+                    <div class="gate gate-horizontal"></div>
+                </div>
+                <div class="container-img" id="containerImgDog">
+
+                </div>
+            </div>
+            <button class="container-button" id="dogBtn"><i class="fas fa-paw"></i></button>
+        </section>
+    </main>
+    <footer>
+        <span>Powered by <strong> The Dog API </strong> & <strong> The Cat Api </strong></span>
+        <span>All rights reserved 2021</span>
+    </footer>
+</body>
+</html>

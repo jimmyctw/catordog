@@ -1,0 +1,208 @@
+@import "init";
+@import "mixin";
+@import url('https://fonts.googleapis.com/css2?family=Hachi+Maru+Pop&family=Open+Sans+Condensed:wght@300&family=Ubuntu:wght@300&display=swap');
+
+
+$clr-dark: #0C120C;
+$clr-orange: #D78521;
+$clr-pink: #EF959C;
+$font-jp: 'Hachi Maru Pop', cursive;
+$font-title: 'Open Sans Condensed', sans-serif;
+$font-info: 'Ubuntu', sans-serif;
+
+*{
+    background-color: grey;
+
+}
+
+h1, h2, h3, h4, h5{
+    color: $clr-dark;
+    margin: 1rem 0;
+}
+
+i{
+    font-size: 6rem;
+    margin: 1rem;
+    color: $clr-pink;
+}
+button{
+    cursor:pointer;
+    pointer-events: auto;
+
+}
+
+
+
+
+body, header, .container, footer{
+    @include flexC;
+}
+body{
+    align-items: center;
+    min-height: 100vh;
+}
+header{
+    height: 10vh;
+    margin: 3rem 0 1rem;
+    span{
+        font-size: 3.5rem;
+        font-family: $font-title;
+    }
+    button:focus i{
+        transition: 1s;
+        color: red;
+    }
+    button:focus{
+        transition: 1s;
+        transform: translateY(-1rem);
+    }
+
+}
+
+
+
+main{
+    @include flexR;
+    justify-content: center;
+
+    flex-wrap: wrap;
+    width: 100vw;
+}
+
+.container{
+    width: 45vw;
+    margin: 1rem;
+    position: relative;
+
+    .container-img-box{
+        width: 18rem;
+        height: 18rem;
+        border-radius: 1rem;
+        position: relative;
+        margin: 2rem 0;
+        .container-img{
+            width: 100%;
+            height: 100%;
+            @include flexC;
+            border: .2rem solid $clr-dark;
+        }
+        img{
+            height: 100%;
+            object-fit: cover;
+
+        }
+
+    }
+    .container-img-lock{
+        position: absolute;
+        background-color: transparent;
+        bottom: 3rem;
+        left: -2.4rem;
+        z-index: 10;
+        i{
+            background-color: transparent;
+            color: $clr-pink;
+            font-size: 4rem;
+        }
+    }
+
+    .container-button{
+        margin-top: 5rem;
+        margin: 2rem;
+
+    }
+    .container-button:active{
+        -webkit-animation: spin .5s;
+	    animation: spin .5s;
+        
+    }
+}
+
+.container-wall{
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 21rem;
+    min-width: 18rem;
+    height: 21rem;
+    background-color: rgba(black, .7);
+    border-radius: 1rem;
+    pointer-events:none;
+
+}
+
+
+.container-img-gate{
+    position: absolute; 
+    background-color: transparent;
+    right: 0;
+    left: 0;
+    width: 18rem;
+    height: 18rem;
+
+    .gate{
+        background-color: #D78521;
+        position: absolute;
+        border: .5px solid $clr-dark;
+    }
+    .gate-vertical{
+        width: .2rem;
+        height: 100%;
+    }
+    .gate-horizontal{
+        height: .2rem;
+        width: 100%;
+    }
+    :nth-child(1){
+        transform: translateX(3.6rem);
+    }
+    :nth-child(2){
+        transform: translateX(7.2rem);
+    }
+    :nth-child(3){
+        transform: translateX(10.8rem);
+    }
+    :nth-child(4){
+        transform: translateX(14.4rem);
+    }
+    :nth-child(5){
+        transform: translateY(3.6rem);
+    }
+    :nth-child(6){
+        transform: translateY(7.2rem);
+    }
+    :nth-child(7){
+        transform: translateY(10.8rem);
+    }
+    :nth-child(8){
+        transform: translateY(14.4rem);
+    }
+}
+
+
+
+
+
+
+footer{
+    height: 10vh;
+    font-family: $font-info;
+}
+
+.displayNone{
+    display: none;
+}
+
+@keyframes spin {
+    0% {
+        transform:rotate(0deg);
+    }
+    50%{
+        transform:rotate(150deg);
+    }
+    100% {
+        transform:rotate(0deg);
+    }
+}
+
+
