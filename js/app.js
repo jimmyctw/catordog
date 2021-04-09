@@ -1,81 +1,64 @@
+// alert("猫派犬派きめて")
+$(document).ready(function(){
+    $("#dogContainer").hide();
+    $("#catContainer").hide();        
 
-alert("猫派犬派きめて")
-//cat or dog
-const chooseCat = document.getElementById("chooseCat");
-const chooseDog = document.getElementById("chooseDog");
-const catContainer = document.getElementById("catContainer");
-const dogContainer = document.getElementById("dogContainer");
-
-//fetch img & display
-const catBtn = document.getElementById("catBtn");
-const dogBtn = document.getElementById("dogBtn");
-const containerImgDog = document.getElementById("containerImgDog");
-const containerImgCat = document.getElementById("containerImgCat");
-const fetchCat = "https://api.thecatapi.com/v1/images/search";
-const fetchDog = "https://api.thedogapi.com/v1/images/search";
-
-//Lock
-const containerLocks = document.getElementsByClassName("container-img-lock");
-
-//all EventListener
-chooseCat.addEventListener("click", (e)=> catOrDog(e));
-chooseDog.addEventListener("click", (e)=> catOrDog(e));
-catBtn.addEventListener("click", (e)=> getImg(e, containerImgCat, fetchCat));
-dogBtn.addEventListener("click", (e)=> getImg(e, containerImgDog, fetchDog));
-
-for (let i = 0; i < containerLocks.length ; i++){
-    let containerLock = containerLocks[i];
-    containerLock.addEventListener("click", (e)=> lockUnlock(e));
-}
-
-
-//functions start
-function lockUnlock(e){
-    let containerLock = e.target.parentElement;
-    let lockI = `<i class="fas fa-lock"></i>`;
-    let unlockI = `<i class="fas fa-unlock"></i>`;
-    if(containerLock.innerHTML == unlockI)
-        {containerLock.innerHTML = lockI;}
-    else{
-        containerLock.innerHTML = unlockI;
+    //choose cat or dog--------------------------------------
+    $("#chooseCat").on("click", (e)=> catOrDog(e.target));
+    $("#chooseDog").on("click", (e)=> catOrDog(e.target));
+    function catOrDog(target){
+        const chosenBtn = target;
+        const chosenStyle = {  'transition': '1s', 'color': 'red', 'transform' : 'translateY(-1rem)'}
+        const originalStyle = {  'transition': '.5s', 'color': '#EF959C', 'transform' : 'translateY(0rem)'}
+        if(chosenBtn.classList.contains("cat")){
+            $("#chooseCat i").css(chosenStyle);
+            $("#chooseDog i").css(originalStyle);
+            $("#catContainer").show();
+            $("#dogContainer").hide();
+        }else{
+            $("#chooseDog i").css(chosenStyle);
+            $("#chooseCat i").css(originalStyle);
+            $("#dogContainer").show();
+            $("#catContainer").hide();        
+        }
     }
-    let gate = containerLock.nextElementSibling;
-    gate.classList.toggle("displayNone")
-}
 
 
+    //fetch img & display--------------------------------------
+    const $catBtn = $("#catBtn");
+    const $dogBtn = $("#dogBtn");
+    const $containerImgDog = $("#containerImgDog");
+    const $containerImgCat = $("#containerImgCat");
+    const fetchCat = "https://api.thecatapi.com/v1/images/search";
+    const fetchDog = "https://api.thedogapi.com/v1/images/search";
+    $catBtn.on("click", (e)=> getImg(e, $containerImgCat, fetchCat));
+    $dogBtn.on("click", (e)=> getImg(e, $containerImgDog, fetchDog));
 
-function catOrDog(e){
-    resetClear()
-    let chosenBtn = e.target;
-    if(chosenBtn.classList.contains("cat")){
-        catContainer.classList.toggle("displayNone")
-
-    }else{
-        dogContainer.classList.toggle("displayNone")
-
+    async function getImg(e, containerImg, fetchUrl){
+        containerImg.empty();
+        fetch(fetchUrl)
+            .then(respponse => respponse.json())
+            .then((data) => {
+                let imgUrl = data[0].url
+                let imgEle = document.createElement("img")
+                imgEle.setAttribute("src", `${imgUrl}`)
+                containerImg.append(imgEle)
+            })
+            .catch(err => console.log(err))
     }
-}
 
-function resetClear(){
-    catContainer.classList.add("displayNone")
-    dogContainer.classList.add("displayNone")
-}
-
-async function getImg(e, containerImg, fetchUrl){
-    containerImg.innerHTML = "";
-    fetch(fetchUrl)
-        .then(respponse => respponse.json())
-        .then((data) => {
-            let imgUrl = data[0].url
-            let imgEle = document.createElement("img")
-            imgEle.setAttribute("src", `${imgUrl}`)
-            containerImg.appendChild(imgEle)
-        })
-        .catch(err => console.log(err))
-}
-
-
-
-
-
+　　　//Lock
+    $("#lockCat").on("click", (e)=> lockUnlock(e.target, $("#gateCat")));
+    $("#lockDog").on("click", (e)=> lockUnlock(e.target, $("#gateDog")));
+    function lockUnlock(containerLock, gate){
+        let containerLockBtn = containerLock.parentElement;
+        let lockI = `<i class="fas fa-lock"></i>`;
+        let unlockI = `<i class="fas fa-unlock"></i>`;
+        if(containerLockBtn.innerHTML == unlockI)
+            {containerLockBtn.innerHTML = lockI;}
+        else{
+            containerLockBtn.innerHTML = unlockI;
+        }        
+        gate.toggle('displayNone')
+    }
+})

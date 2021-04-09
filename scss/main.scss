@@ -48,16 +48,9 @@ header{
         font-size: 3.5rem;
         font-family: $font-title;
     }
-    button:focus i{
-        transition: 1s;
-        color: red;
-    }
-    button:focus{
-        transition: 1s;
-        transform: translateY(-1rem);
-    }
 
 }
+
 
 
 
@@ -73,6 +66,7 @@ main{
     width: 45vw;
     margin: 1rem;
     position: relative;
+        @include flexC;
 
     .container-img-box{
         width: 18rem;

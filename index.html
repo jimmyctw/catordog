@@ -10,28 +10,31 @@
         crossorigin="anonymous" />
     <!-- main css -->
     <link rel="stylesheet" href="/css/main.css">
+
+    <!-- jquery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script defer src="js/app.js"></script>
     <title>DOG OR CAT</title>
 </head>
 <body>
     <header>
         <ul class="header-set">
-            <button id="chooseCat"><i class="fas fa-cat cat"></i></button>
+            <button class="cat" id="chooseCat"><i class="fas fa-cat cat"></i></button>
             <span>or</span>
-            <button id="chooseDog"><i class="fas fa-dog dog"></i></button>
+            <button class="dog" id="chooseDog"><i class="fas fa-dog dog"></i></button>
         </ul>
 
     </header>
     <main>
 
-        <section class="container displayNone" id="catContainer">
+        <section class="container" id="catContainer">
 
             <div class="container-wall"></div>
             <div class="container-img-box" id="catImgBox" >
-                <button class="container-img-lock">
+                <button class="container-img-lock" id="lockCat">
                     <i class="fas fa-lock"></i>
                 </button>
-                <div class="container-img-gate" onclick="alert('触っちゃダメ!!ロックをクリックして');">
+                <div class="container-img-gate" id="gateCat" onclick="alert('触っちゃダメ!!ロックをクリックして');">
                     <div class="gate gate-vertical"></div>
                     <div class="gate gate-vertical"></div>
                     <div class="gate gate-vertical"></div>
@@ -48,14 +51,14 @@
                 ><i class="fas fa-paw"></i>
             </button>
         </section>
-        <section class="container displayNone" id="dogContainer">
+        <section class="container" id="dogContainer">
             <div class="container-wall"></div>
 
             <div class="container-img-box" id="dogImgBox">
-                <button class="container-img-lock">
+                <button class="container-img-lock" id="lockDog">
                     <i class="fas fa-lock"></i>
                 </button>
-                <div class="container-img-gate" onclick="alert('触っちゃダメ!!ロックをクリックして');">
+                <div class="container-img-gate" id="gateDog" onclick="alert('触っちゃダメ!!ロックをクリックして');">
                     <div class="gate gate-vertical"></div>
                     <div class="gate gate-vertical"></div>
                     <div class="gate gate-vertical"></div>
