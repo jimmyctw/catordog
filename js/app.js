@@ -31,10 +31,12 @@ $(document).ready(function(){
     const $containerImgCat = $("#containerImgCat");
     const fetchCat = "https://api.thecatapi.com/v1/images/search";
     const fetchDog = "https://api.thedogapi.com/v1/images/search";
-    $catBtn.on("click", (e)=> getImg(e, $containerImgCat, fetchCat));
-    $dogBtn.on("click", (e)=> getImg(e, $containerImgDog, fetchDog));
+    const catBackup = "/assests/cat.jpg";
+    const dogBackup = "/assests/dog.jpg";
+    $catBtn.on("click", (e)=> getImg(e, $containerImgCat, fetchCat, catBackup));
+    $dogBtn.on("click", (e)=> getImg(e, $containerImgDog, fetchDog, dogBackup));
 
-    async function getImg(e, containerImg, fetchUrl){
+    function getImg(e, containerImg, fetchUrl, backupUrl){
         containerImg.empty();
         fetch(fetchUrl)
             .then(respponse => respponse.json())
@@ -44,8 +46,16 @@ $(document).ready(function(){
                 imgEle.setAttribute("src", `${imgUrl}`)
                 containerImg.append(imgEle)
             })
-            .catch(err => console.log(err))
+            .catch(err => {
+                let imgEle = document.createElement("img")
+                imgEle.setAttribute("src", `${backupUrl}`)
+                containerImg.append(imgEle)
+            })
     }
+
+
+
+
 
 　　　//Lock
     $("#lockCat").on("click", (e)=> lockUnlock(e.target, $("#gateCat")));
